@@ -1,3 +1,15 @@
+  - [Yet Another Power System Model
+    (YAPOS)](#yet-another-power-system-model-yapos)
+      - [Installation](#installation)
+      - [Getting started](#getting-started)
+      - [Launching a simulation](#launch)
+      - [Notes and caveats](#notes-and-caveats)
+      - [How to set up and launch a simulation](#setup)
+      - [Formulation](#formulation)
+      - [Inputs](#inputs)
+      - [Outputs](#outputs)
+      - [Available simulations](#simulations)
+
 # Yet Another Power System Model (YAPOS)
 
 **What is YAPOS?** YAPOS is an economic dispatch model implemented in
@@ -40,6 +52,13 @@ The output of the simulation can be found in the folder `db/test`.
 With YAPOS code you can also find a database of simulations already
 available. [More information here](#simulations).
 
+## Launching a simulation
+
+To launch a simulation you need to execute the script `main.py`
+specifying two arguments: the path of the folder containing the input
+files and the name of the simulation. This name will be used as name of
+the NetCDF output.
+
 ## Notes and caveats
 
   - The model uses [Cbc solver](https://projects.coin-or.org/Cbc) as
@@ -49,7 +68,8 @@ available. [More information here](#simulations).
     because our formulation converts the CSVs into information by
     position (using Pandas `iloc`). Then be careful when changing the
     inputs, all the dimensions (units, zones, etc.) MUST follow the same
-    order in all the input files.
+    order in all the [input files](#inputs) and the name of the
+    simulation that will be used to name the NetCDF output file.
 
 ## How to set up and launch a simulation
 
@@ -100,8 +120,7 @@ Sets
 |   `curt(n,t)`    |  Curtailed electricity in the zone `n` (MWh)  |
 |    `flw(l,t)`    |    Electricity flow on the line `l` (MWh)     |
 
-Optimization
-variables
+Optimization variables
 
 | Name                 | Description                                                     |
 | :------------------- | :-------------------------------------------------------------- |
@@ -111,8 +130,7 @@ variables
 
 Slack variables
 
-The optimization problem uses the following objective
-function:
+The optimization problem uses the following objective function:
 
 \[\sum_{g,t} COST(g) \cdot prod(g,t) + \sum_{n,t} 400 \cdot shd(n,t) + \sum_{g,t} 100 \cdot water\_slack(g,t) + \sum_{g,t} 100 \cdot storage\_slack(g,t) + \sum_{n,t} 100 \cdot curt\_slack(n,t) \]
 
@@ -143,7 +161,7 @@ electricity demand. <!--html_preserve-->
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xbyagpcmfl .gt_table {
+#sziphzcrts .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -166,7 +184,7 @@ electricity demand. <!--html_preserve-->
   border-left-color: #D3D3D3;
 }
 
-#xbyagpcmfl .gt_heading {
+#sziphzcrts .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -178,7 +196,7 @@ electricity demand. <!--html_preserve-->
   border-right-color: #D3D3D3;
 }
 
-#xbyagpcmfl .gt_title {
+#sziphzcrts .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -188,7 +206,7 @@ electricity demand. <!--html_preserve-->
   border-bottom-width: 0;
 }
 
-#xbyagpcmfl .gt_subtitle {
+#sziphzcrts .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -198,13 +216,13 @@ electricity demand. <!--html_preserve-->
   border-top-width: 0;
 }
 
-#xbyagpcmfl .gt_bottom_border {
+#sziphzcrts .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xbyagpcmfl .gt_col_headings {
+#sziphzcrts .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -219,7 +237,7 @@ electricity demand. <!--html_preserve-->
   border-right-color: #D3D3D3;
 }
 
-#xbyagpcmfl .gt_col_heading {
+#sziphzcrts .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: smaller;
@@ -239,7 +257,7 @@ electricity demand. <!--html_preserve-->
   overflow-x: hidden;
 }
 
-#xbyagpcmfl .gt_column_spanner_outer {
+#sziphzcrts .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: smaller;
@@ -251,15 +269,15 @@ electricity demand. <!--html_preserve-->
   padding-right: 4px;
 }
 
-#xbyagpcmfl .gt_column_spanner_outer:first-child {
+#sziphzcrts .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xbyagpcmfl .gt_column_spanner_outer:last-child {
+#sziphzcrts .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xbyagpcmfl .gt_column_spanner {
+#sziphzcrts .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -271,7 +289,7 @@ electricity demand. <!--html_preserve-->
   width: 100%;
 }
 
-#xbyagpcmfl .gt_group_heading {
+#sziphzcrts .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -293,7 +311,7 @@ electricity demand. <!--html_preserve-->
   vertical-align: middle;
 }
 
-#xbyagpcmfl .gt_empty_group_heading {
+#sziphzcrts .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -308,19 +326,19 @@ electricity demand. <!--html_preserve-->
   vertical-align: middle;
 }
 
-#xbyagpcmfl .gt_striped {
+#sziphzcrts .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xbyagpcmfl .gt_from_md > :first-child {
+#sziphzcrts .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xbyagpcmfl .gt_from_md > :last-child {
+#sziphzcrts .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xbyagpcmfl .gt_row {
+#sziphzcrts .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -339,7 +357,7 @@ electricity demand. <!--html_preserve-->
   overflow-x: hidden;
 }
 
-#xbyagpcmfl .gt_stub {
+#sziphzcrts .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -351,7 +369,7 @@ electricity demand. <!--html_preserve-->
   padding-left: 12px;
 }
 
-#xbyagpcmfl .gt_summary_row {
+#sziphzcrts .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -361,7 +379,7 @@ electricity demand. <!--html_preserve-->
   padding-right: 5px;
 }
 
-#xbyagpcmfl .gt_first_summary_row {
+#sziphzcrts .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -371,7 +389,7 @@ electricity demand. <!--html_preserve-->
   border-top-color: #D3D3D3;
 }
 
-#xbyagpcmfl .gt_grand_summary_row {
+#sziphzcrts .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -381,7 +399,7 @@ electricity demand. <!--html_preserve-->
   padding-right: 5px;
 }
 
-#xbyagpcmfl .gt_first_grand_summary_row {
+#sziphzcrts .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -391,7 +409,7 @@ electricity demand. <!--html_preserve-->
   border-top-color: #D3D3D3;
 }
 
-#xbyagpcmfl .gt_table_body {
+#sziphzcrts .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -400,7 +418,7 @@ electricity demand. <!--html_preserve-->
   border-bottom-color: #D3D3D3;
 }
 
-#xbyagpcmfl .gt_footnotes {
+#sziphzcrts .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -414,13 +432,13 @@ electricity demand. <!--html_preserve-->
   border-right-color: #D3D3D3;
 }
 
-#xbyagpcmfl .gt_footnote {
+#sziphzcrts .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#xbyagpcmfl .gt_sourcenotes {
+#sziphzcrts .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -434,47 +452,47 @@ electricity demand. <!--html_preserve-->
   border-right-color: #D3D3D3;
 }
 
-#xbyagpcmfl .gt_sourcenote {
+#sziphzcrts .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#xbyagpcmfl .gt_left {
+#sziphzcrts .gt_left {
   text-align: left;
 }
 
-#xbyagpcmfl .gt_center {
+#sziphzcrts .gt_center {
   text-align: center;
 }
 
-#xbyagpcmfl .gt_right {
+#sziphzcrts .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xbyagpcmfl .gt_font_normal {
+#sziphzcrts .gt_font_normal {
   font-weight: normal;
 }
 
-#xbyagpcmfl .gt_font_bold {
+#sziphzcrts .gt_font_bold {
   font-weight: bold;
 }
 
-#xbyagpcmfl .gt_font_italic {
+#sziphzcrts .gt_font_italic {
   font-style: italic;
 }
 
-#xbyagpcmfl .gt_super {
+#sziphzcrts .gt_super {
   font-size: 65%;
 }
 
-#xbyagpcmfl .gt_footnote_marks {
+#sziphzcrts .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
 
-<div id="xbyagpcmfl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="sziphzcrts" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table">
 
@@ -484,8 +502,7 @@ electricity demand. <!--html_preserve-->
 
 <th colspan="28" class="gt_heading gt_title gt_font_normal" style>
 
-<strong>Daily
-demand</strong>
+<strong>Daily demand</strong>
 
 </th>
 
@@ -495,8 +512,7 @@ demand</strong>
 
 <th colspan="28" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>
 
-First three
-days
+First three days
 
 </th>
 
@@ -1234,7 +1250,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ewwbdrjkuz .gt_table {
+#meyagjkkgn .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1257,7 +1273,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   border-left-color: #D3D3D3;
 }
 
-#ewwbdrjkuz .gt_heading {
+#meyagjkkgn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1269,7 +1285,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   border-right-color: #D3D3D3;
 }
 
-#ewwbdrjkuz .gt_title {
+#meyagjkkgn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1279,7 +1295,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   border-bottom-width: 0;
 }
 
-#ewwbdrjkuz .gt_subtitle {
+#meyagjkkgn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1289,13 +1305,13 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   border-top-width: 0;
 }
 
-#ewwbdrjkuz .gt_bottom_border {
+#meyagjkkgn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ewwbdrjkuz .gt_col_headings {
+#meyagjkkgn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1310,7 +1326,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   border-right-color: #D3D3D3;
 }
 
-#ewwbdrjkuz .gt_col_heading {
+#meyagjkkgn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: smaller;
@@ -1330,7 +1346,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   overflow-x: hidden;
 }
 
-#ewwbdrjkuz .gt_column_spanner_outer {
+#meyagjkkgn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: smaller;
@@ -1342,15 +1358,15 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   padding-right: 4px;
 }
 
-#ewwbdrjkuz .gt_column_spanner_outer:first-child {
+#meyagjkkgn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ewwbdrjkuz .gt_column_spanner_outer:last-child {
+#meyagjkkgn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ewwbdrjkuz .gt_column_spanner {
+#meyagjkkgn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1362,7 +1378,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   width: 100%;
 }
 
-#ewwbdrjkuz .gt_group_heading {
+#meyagjkkgn .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1384,7 +1400,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   vertical-align: middle;
 }
 
-#ewwbdrjkuz .gt_empty_group_heading {
+#meyagjkkgn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1399,19 +1415,19 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   vertical-align: middle;
 }
 
-#ewwbdrjkuz .gt_striped {
+#meyagjkkgn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ewwbdrjkuz .gt_from_md > :first-child {
+#meyagjkkgn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ewwbdrjkuz .gt_from_md > :last-child {
+#meyagjkkgn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ewwbdrjkuz .gt_row {
+#meyagjkkgn .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -1430,7 +1446,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   overflow-x: hidden;
 }
 
-#ewwbdrjkuz .gt_stub {
+#meyagjkkgn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1442,7 +1458,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   padding-left: 12px;
 }
 
-#ewwbdrjkuz .gt_summary_row {
+#meyagjkkgn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1452,7 +1468,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   padding-right: 5px;
 }
 
-#ewwbdrjkuz .gt_first_summary_row {
+#meyagjkkgn .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1462,7 +1478,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   border-top-color: #D3D3D3;
 }
 
-#ewwbdrjkuz .gt_grand_summary_row {
+#meyagjkkgn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1472,7 +1488,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   padding-right: 5px;
 }
 
-#ewwbdrjkuz .gt_first_grand_summary_row {
+#meyagjkkgn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1482,7 +1498,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   border-top-color: #D3D3D3;
 }
 
-#ewwbdrjkuz .gt_table_body {
+#meyagjkkgn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1491,7 +1507,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   border-bottom-color: #D3D3D3;
 }
 
-#ewwbdrjkuz .gt_footnotes {
+#meyagjkkgn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1505,13 +1521,13 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   border-right-color: #D3D3D3;
 }
 
-#ewwbdrjkuz .gt_footnote {
+#meyagjkkgn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ewwbdrjkuz .gt_sourcenotes {
+#meyagjkkgn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1525,47 +1541,47 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
   border-right-color: #D3D3D3;
 }
 
-#ewwbdrjkuz .gt_sourcenote {
+#meyagjkkgn .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ewwbdrjkuz .gt_left {
+#meyagjkkgn .gt_left {
   text-align: left;
 }
 
-#ewwbdrjkuz .gt_center {
+#meyagjkkgn .gt_center {
   text-align: center;
 }
 
-#ewwbdrjkuz .gt_right {
+#meyagjkkgn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ewwbdrjkuz .gt_font_normal {
+#meyagjkkgn .gt_font_normal {
   font-weight: normal;
 }
 
-#ewwbdrjkuz .gt_font_bold {
+#meyagjkkgn .gt_font_bold {
   font-weight: bold;
 }
 
-#ewwbdrjkuz .gt_font_italic {
+#meyagjkkgn .gt_font_italic {
   font-style: italic;
 }
 
-#ewwbdrjkuz .gt_super {
+#meyagjkkgn .gt_super {
   font-size: 65%;
 }
 
-#ewwbdrjkuz .gt_footnote_marks {
+#meyagjkkgn .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
 
-<div id="ewwbdrjkuz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="meyagjkkgn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table">
 
@@ -1575,8 +1591,7 @@ Here an example of the file `db/envarclim/1990/gen.csv`.
 
 <th colspan="10" class="gt_heading gt_title gt_font_normal" style>
 
-<strong>Generation
-units</strong>
+<strong>Generation units</strong>
 
 </th>
 
@@ -1586,8 +1601,7 @@ units</strong>
 
 <th colspan="10" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>
 
-First five
-units
+First five units
 
 </th>
 
@@ -2009,7 +2023,7 @@ Here an example.
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#tsoyqykgjh .gt_table {
+#sdhszothji .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2032,7 +2046,7 @@ Here an example.
   border-left-color: #D3D3D3;
 }
 
-#tsoyqykgjh .gt_heading {
+#sdhszothji .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2044,7 +2058,7 @@ Here an example.
   border-right-color: #D3D3D3;
 }
 
-#tsoyqykgjh .gt_title {
+#sdhszothji .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2054,7 +2068,7 @@ Here an example.
   border-bottom-width: 0;
 }
 
-#tsoyqykgjh .gt_subtitle {
+#sdhszothji .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2064,13 +2078,13 @@ Here an example.
   border-top-width: 0;
 }
 
-#tsoyqykgjh .gt_bottom_border {
+#sdhszothji .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tsoyqykgjh .gt_col_headings {
+#sdhszothji .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2085,7 +2099,7 @@ Here an example.
   border-right-color: #D3D3D3;
 }
 
-#tsoyqykgjh .gt_col_heading {
+#sdhszothji .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: smaller;
@@ -2105,7 +2119,7 @@ Here an example.
   overflow-x: hidden;
 }
 
-#tsoyqykgjh .gt_column_spanner_outer {
+#sdhszothji .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: smaller;
@@ -2117,15 +2131,15 @@ Here an example.
   padding-right: 4px;
 }
 
-#tsoyqykgjh .gt_column_spanner_outer:first-child {
+#sdhszothji .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tsoyqykgjh .gt_column_spanner_outer:last-child {
+#sdhszothji .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tsoyqykgjh .gt_column_spanner {
+#sdhszothji .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2137,7 +2151,7 @@ Here an example.
   width: 100%;
 }
 
-#tsoyqykgjh .gt_group_heading {
+#sdhszothji .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2159,7 +2173,7 @@ Here an example.
   vertical-align: middle;
 }
 
-#tsoyqykgjh .gt_empty_group_heading {
+#sdhszothji .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2174,19 +2188,19 @@ Here an example.
   vertical-align: middle;
 }
 
-#tsoyqykgjh .gt_striped {
+#sdhszothji .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tsoyqykgjh .gt_from_md > :first-child {
+#sdhszothji .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tsoyqykgjh .gt_from_md > :last-child {
+#sdhszothji .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tsoyqykgjh .gt_row {
+#sdhszothji .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -2205,7 +2219,7 @@ Here an example.
   overflow-x: hidden;
 }
 
-#tsoyqykgjh .gt_stub {
+#sdhszothji .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2217,7 +2231,7 @@ Here an example.
   padding-left: 12px;
 }
 
-#tsoyqykgjh .gt_summary_row {
+#sdhszothji .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2227,7 +2241,7 @@ Here an example.
   padding-right: 5px;
 }
 
-#tsoyqykgjh .gt_first_summary_row {
+#sdhszothji .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2237,7 +2251,7 @@ Here an example.
   border-top-color: #D3D3D3;
 }
 
-#tsoyqykgjh .gt_grand_summary_row {
+#sdhszothji .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2247,7 +2261,7 @@ Here an example.
   padding-right: 5px;
 }
 
-#tsoyqykgjh .gt_first_grand_summary_row {
+#sdhszothji .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2257,7 +2271,7 @@ Here an example.
   border-top-color: #D3D3D3;
 }
 
-#tsoyqykgjh .gt_table_body {
+#sdhszothji .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2266,7 +2280,7 @@ Here an example.
   border-bottom-color: #D3D3D3;
 }
 
-#tsoyqykgjh .gt_footnotes {
+#sdhszothji .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2280,13 +2294,13 @@ Here an example.
   border-right-color: #D3D3D3;
 }
 
-#tsoyqykgjh .gt_footnote {
+#sdhszothji .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#tsoyqykgjh .gt_sourcenotes {
+#sdhszothji .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2300,47 +2314,47 @@ Here an example.
   border-right-color: #D3D3D3;
 }
 
-#tsoyqykgjh .gt_sourcenote {
+#sdhszothji .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#tsoyqykgjh .gt_left {
+#sdhszothji .gt_left {
   text-align: left;
 }
 
-#tsoyqykgjh .gt_center {
+#sdhszothji .gt_center {
   text-align: center;
 }
 
-#tsoyqykgjh .gt_right {
+#sdhszothji .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tsoyqykgjh .gt_font_normal {
+#sdhszothji .gt_font_normal {
   font-weight: normal;
 }
 
-#tsoyqykgjh .gt_font_bold {
+#sdhszothji .gt_font_bold {
   font-weight: bold;
 }
 
-#tsoyqykgjh .gt_font_italic {
+#sdhszothji .gt_font_italic {
   font-style: italic;
 }
 
-#tsoyqykgjh .gt_super {
+#sdhszothji .gt_super {
   font-size: 65%;
 }
 
-#tsoyqykgjh .gt_footnote_marks {
+#sdhszothji .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
 
-<div id="tsoyqykgjh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="sdhszothji" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table">
 
@@ -2350,8 +2364,7 @@ Here an example.
 
 <th colspan="4" class="gt_heading gt_title gt_font_normal" style>
 
-<strong>Transmission
-lines</strong>
+<strong>Transmission lines</strong>
 
 </th>
 
@@ -2361,8 +2374,7 @@ lines</strong>
 
 <th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>
 
-First five
-lines
+First five lines
 
 </th>
 
@@ -2552,12 +2564,17101 @@ AT-IT
 
 <!--/html_preserve-->
 
-### Ren
+### Non-dispatchable renewables
+
+File name is `ren.csv` and contains a time-series per zone of the
+generation from non-dispatchable renewables. The amount of electricity
+specified will be generated unless curtailed.  
+<!--html_preserve-->
+
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#pfbxsiqixj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: smaller;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pfbxsiqixj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pfbxsiqixj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pfbxsiqixj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pfbxsiqixj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pfbxsiqixj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pfbxsiqixj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: smaller;
+  font-weight: bold;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pfbxsiqixj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: smaller;
+  font-weight: bold;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pfbxsiqixj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pfbxsiqixj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pfbxsiqixj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pfbxsiqixj .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pfbxsiqixj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pfbxsiqixj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pfbxsiqixj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pfbxsiqixj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pfbxsiqixj .gt_row {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pfbxsiqixj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#pfbxsiqixj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pfbxsiqixj .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#pfbxsiqixj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pfbxsiqixj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pfbxsiqixj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pfbxsiqixj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pfbxsiqixj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pfbxsiqixj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pfbxsiqixj .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pfbxsiqixj .gt_left {
+  text-align: left;
+}
+
+#pfbxsiqixj .gt_center {
+  text-align: center;
+}
+
+#pfbxsiqixj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pfbxsiqixj .gt_font_normal {
+  font-weight: normal;
+}
+
+#pfbxsiqixj .gt_font_bold {
+  font-weight: bold;
+}
+
+#pfbxsiqixj .gt_font_italic {
+  font-style: italic;
+}
+
+#pfbxsiqixj .gt_super {
+  font-size: 65%;
+}
+
+#pfbxsiqixj .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+
+<div id="pfbxsiqixj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+
+<table class="gt_table">
+
+<thead class="gt_header">
+
+<tr>
+
+<th colspan="28" class="gt_heading gt_title gt_font_normal" style>
+
+<strong>Daily renewable generation</strong>
+
+</th>
+
+</tr>
+
+<tr>
+
+<th colspan="28" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>
+
+First three days
+
+</th>
+
+</tr>
+
+</thead>
+
+<thead class="gt_col_headings">
+
+<tr>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NO
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CH
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody class="gt_table_body">
+
+<tr>
+
+<td class="gt_row gt_right">
+
+365
+
+</td>
+
+<td class="gt_row gt_right">
+
+809
+
+</td>
+
+<td class="gt_row gt_right">
+
+56,826
+
+</td>
+
+<td class="gt_row gt_right">
+
+35,074
+
+</td>
+
+<td class="gt_row gt_right">
+
+1,628
+
+</td>
+
+<td class="gt_row gt_right">
+
+65,255
+
+</td>
+
+<td class="gt_row gt_right">
+
+19,048
+
+</td>
+
+<td class="gt_row gt_right">
+
+50,670
+
+</td>
+
+<td class="gt_row gt_right">
+
+95,950
+
+</td>
+
+<td class="gt_row gt_right">
+
+81,039
+
+</td>
+
+<td class="gt_row gt_right">
+
+17,370
+
+</td>
+
+<td class="gt_row gt_right">
+
+2,856
+
+</td>
+
+<td class="gt_row gt_right">
+
+2,237
+
+</td>
+
+<td class="gt_row gt_right">
+
+21,637
+
+</td>
+
+<td class="gt_row gt_right">
+
+3,508
+
+</td>
+
+<td class="gt_row gt_right">
+
+16,527
+
+</td>
+
+<td class="gt_row gt_right">
+
+86
+
+</td>
+
+<td class="gt_row gt_right">
+
+5
+
+</td>
+
+<td class="gt_row gt_right">
+
+512
+
+</td>
+
+<td class="gt_row gt_right">
+
+530
+
+</td>
+
+<td class="gt_row gt_right">
+
+242
+
+</td>
+
+<td class="gt_row gt_right">
+
+15,209
+
+</td>
+
+<td class="gt_row gt_right">
+
+5
+
+</td>
+
+<td class="gt_row gt_right">
+
+6,807
+
+</td>
+
+<td class="gt_row gt_right">
+
+7,336
+
+</td>
+
+<td class="gt_row gt_right">
+
+3,584
+
+</td>
+
+<td class="gt_row gt_right">
+
+15,790
+
+</td>
+
+<td class="gt_row gt_right">
+
+14,540
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="gt_row gt_right">
+
+1,113
+
+</td>
+
+<td class="gt_row gt_right">
+
+2,223
+
+</td>
+
+<td class="gt_row gt_right">
+
+75,758
+
+</td>
+
+<td class="gt_row gt_right">
+
+41,793
+
+</td>
+
+<td class="gt_row gt_right">
+
+3,647
+
+</td>
+
+<td class="gt_row gt_right">
+
+189,418
+
+</td>
+
+<td class="gt_row gt_right">
+
+69,115
+
+</td>
+
+<td class="gt_row gt_right">
+
+39,985
+
+</td>
+
+<td class="gt_row gt_right">
+
+78,987
+
+</td>
+
+<td class="gt_row gt_right">
+
+83,679
+
+</td>
+
+<td class="gt_row gt_right">
+
+29,914
+
+</td>
+
+<td class="gt_row gt_right">
+
+2,159
+
+</td>
+
+<td class="gt_row gt_right">
+
+2,172
+
+</td>
+
+<td class="gt_row gt_right">
+
+19,191
+
+</td>
+
+<td class="gt_row gt_right">
+
+4,723
+
+</td>
+
+<td class="gt_row gt_right">
+
+16,112
+
+</td>
+
+<td class="gt_row gt_right">
+
+184
+
+</td>
+
+<td class="gt_row gt_right">
+
+13
+
+</td>
+
+<td class="gt_row gt_right">
+
+229
+
+</td>
+
+<td class="gt_row gt_right">
+
+16
+
+</td>
+
+<td class="gt_row gt_right">
+
+5
+
+</td>
+
+<td class="gt_row gt_right">
+
+12,368
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+6,799
+
+</td>
+
+<td class="gt_row gt_right">
+
+7,077
+
+</td>
+
+<td class="gt_row gt_right">
+
+5,044
+
+</td>
+
+<td class="gt_row gt_right">
+
+15,712
+
+</td>
+
+<td class="gt_row gt_right">
+
+10,972
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="gt_row gt_right">
+
+20,558
+
+</td>
+
+<td class="gt_row gt_right">
+
+13,255
+
+</td>
+
+<td class="gt_row gt_right">
+
+121,753
+
+</td>
+
+<td class="gt_row gt_right">
+
+156,951
+
+</td>
+
+<td class="gt_row gt_right">
+
+18,819
+
+</td>
+
+<td class="gt_row gt_right">
+
+173,162
+
+</td>
+
+<td class="gt_row gt_right">
+
+35,485
+
+</td>
+
+<td class="gt_row gt_right">
+
+38,936
+
+</td>
+
+<td class="gt_row gt_right">
+
+80,577
+
+</td>
+
+<td class="gt_row gt_right">
+
+92,317
+
+</td>
+
+<td class="gt_row gt_right">
+
+6,672
+
+</td>
+
+<td class="gt_row gt_right">
+
+4,868
+
+</td>
+
+<td class="gt_row gt_right">
+
+3,931
+
+</td>
+
+<td class="gt_row gt_right">
+
+20,510
+
+</td>
+
+<td class="gt_row gt_right">
+
+2,121
+
+</td>
+
+<td class="gt_row gt_right">
+
+15,844
+
+</td>
+
+<td class="gt_row gt_right">
+
+235
+
+</td>
+
+<td class="gt_row gt_right">
+
+23
+
+</td>
+
+<td class="gt_row gt_right">
+
+420
+
+</td>
+
+<td class="gt_row gt_right">
+
+282
+
+</td>
+
+<td class="gt_row gt_right">
+
+88
+
+</td>
+
+<td class="gt_row gt_right">
+
+17,842
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+6,803
+
+</td>
+
+<td class="gt_row gt_right">
+
+8,005
+
+</td>
+
+<td class="gt_row gt_right">
+
+9,513
+
+</td>
+
+<td class="gt_row gt_right">
+
+15,434
+
+</td>
+
+<td class="gt_row gt_right">
+
+17,284
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!--/html_preserve-->
 
 ### Inflow
 
+File name is `inflow.csv` and contains a time-series per unit of the
+available energy available (MWh) for hydropower generation each day. The
+file contains a column for **all** the units, then non-hydro units will
+have a constant zero value.
+
+<!--html_preserve-->
+
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#obedkxzqjk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: smaller;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#obedkxzqjk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#obedkxzqjk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#obedkxzqjk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#obedkxzqjk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#obedkxzqjk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#obedkxzqjk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: smaller;
+  font-weight: bold;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#obedkxzqjk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: smaller;
+  font-weight: bold;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#obedkxzqjk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#obedkxzqjk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#obedkxzqjk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#obedkxzqjk .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#obedkxzqjk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#obedkxzqjk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#obedkxzqjk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#obedkxzqjk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#obedkxzqjk .gt_row {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#obedkxzqjk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#obedkxzqjk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#obedkxzqjk .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#obedkxzqjk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#obedkxzqjk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#obedkxzqjk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#obedkxzqjk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#obedkxzqjk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#obedkxzqjk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#obedkxzqjk .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#obedkxzqjk .gt_left {
+  text-align: left;
+}
+
+#obedkxzqjk .gt_center {
+  text-align: center;
+}
+
+#obedkxzqjk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#obedkxzqjk .gt_font_normal {
+  font-weight: normal;
+}
+
+#obedkxzqjk .gt_font_bold {
+  font-weight: bold;
+}
+
+#obedkxzqjk .gt_font_italic {
+  font-style: italic;
+}
+
+#obedkxzqjk .gt_super {
+  font-size: 65%;
+}
+
+#obedkxzqjk .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+
+<div id="obedkxzqjk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+
+<table class="gt_table">
+
+<thead class="gt_header">
+
+<tr>
+
+<th colspan="205" class="gt_heading gt_title gt_font_normal" style>
+
+<strong>Daily hydropower inflow</strong>
+
+</th>
+
+</tr>
+
+<tr>
+
+<th colspan="205" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>
+
+First three days
+
+</th>
+
+</tr>
+
+</thead>
+
+<thead class="gt_col_headings">
+
+<tr>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_CCGT fleet CHP
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_CCGT fleet CHP
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Oil fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet CHP
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Coal fleet IGCC
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Coal fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Coal fleet IGCC
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Oil fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NO\_Hydro-reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NO\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NO\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CH\_Hydro-reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CH\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Oil fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS\_Hydro-reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_CCGT fleet CHP
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_CCGT fleet G\_H class
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody class="gt_table_body">
+
+<tr>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+67,770
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+36,439
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+19,169
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+52,165
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+71,357
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+83,616
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+67,168
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+8,894
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+29,888
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+8,110
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+6,998
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+6,154
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+4,877
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+12,388
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+69,383
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+64,742
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+26,159
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+51,637
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+69,157
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+81,907
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+62,475
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+8,659
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+28,928
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+8,143
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+7,007
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+5,897
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+4,853
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+12,753
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+69,561
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+73,321
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+30,802
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+48,501
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+68,115
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+81,879
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+59,912
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+8,415
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+28,331
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+8,338
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+7,044
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+5,869
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+4,767
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+12,782
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!--/html_preserve-->
+
 ### Availability
 
+File `avail.csv` contains a time-series per zone of the availability
+factor, a value between 1 (100% available generation) and 0 (unit non
+available) for each unit.
+
+<!--html_preserve-->
+
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#wekrcysjyy .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: smaller;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wekrcysjyy .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wekrcysjyy .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wekrcysjyy .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wekrcysjyy .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wekrcysjyy .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wekrcysjyy .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: smaller;
+  font-weight: bold;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wekrcysjyy .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: smaller;
+  font-weight: bold;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wekrcysjyy .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wekrcysjyy .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wekrcysjyy .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wekrcysjyy .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wekrcysjyy .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wekrcysjyy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wekrcysjyy .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wekrcysjyy .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wekrcysjyy .gt_row {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wekrcysjyy .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#wekrcysjyy .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wekrcysjyy .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#wekrcysjyy .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wekrcysjyy .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wekrcysjyy .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wekrcysjyy .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wekrcysjyy .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#wekrcysjyy .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wekrcysjyy .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#wekrcysjyy .gt_left {
+  text-align: left;
+}
+
+#wekrcysjyy .gt_center {
+  text-align: center;
+}
+
+#wekrcysjyy .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wekrcysjyy .gt_font_normal {
+  font-weight: normal;
+}
+
+#wekrcysjyy .gt_font_bold {
+  font-weight: bold;
+}
+
+#wekrcysjyy .gt_font_italic {
+  font-style: italic;
+}
+
+#wekrcysjyy .gt_super {
+  font-size: 65%;
+}
+
+#wekrcysjyy .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+
+<div id="wekrcysjyy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+
+<table class="gt_table">
+
+<thead class="gt_header">
+
+<tr>
+
+<th colspan="205" class="gt_heading gt_title gt_font_normal" style>
+
+<strong>Daily hydropower inflow</strong>
+
+</th>
+
+</tr>
+
+<tr>
+
+<th colspan="205" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>
+
+First three days
+
+</th>
+
+</tr>
+
+</thead>
+
+<thead class="gt_col_headings">
+
+<tr>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_CCGT fleet CHP
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_CCGT fleet CHP
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Oil fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet CHP
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Coal fleet IGCC
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Coal fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Coal fleet IGCC
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Oil fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NO\_Hydro-reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NO\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NO\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CH\_Hydro-reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CH\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Oil fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS\_Hydro-reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_CCGT fleet CHP
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_CCGT fleet G\_H class
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody class="gt_table_body">
+
+<tr>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+<td class="gt_row gt_right">
+
+1
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!--/html_preserve-->
+
+### Minimum level of the storage
+
+This file, named `stomin.csv`, contains a time-series per unit of the
+minimum level of the storage. The value will be between `stomin` and
+`stomax` specified in the [list of generation units](#gen). As for the
+[inflow](#inflow) the table has a column for each unit, with a constant
+zero for all the units without storage.
+
+<!--html_preserve-->
+
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#idauwhwfje .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: smaller;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#idauwhwfje .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#idauwhwfje .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#idauwhwfje .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#idauwhwfje .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#idauwhwfje .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#idauwhwfje .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: smaller;
+  font-weight: bold;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#idauwhwfje .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: smaller;
+  font-weight: bold;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#idauwhwfje .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#idauwhwfje .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#idauwhwfje .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#idauwhwfje .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#idauwhwfje .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#idauwhwfje .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#idauwhwfje .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#idauwhwfje .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#idauwhwfje .gt_row {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#idauwhwfje .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#idauwhwfje .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#idauwhwfje .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#idauwhwfje .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#idauwhwfje .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#idauwhwfje .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#idauwhwfje .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#idauwhwfje .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#idauwhwfje .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#idauwhwfje .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#idauwhwfje .gt_left {
+  text-align: left;
+}
+
+#idauwhwfje .gt_center {
+  text-align: center;
+}
+
+#idauwhwfje .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#idauwhwfje .gt_font_normal {
+  font-weight: normal;
+}
+
+#idauwhwfje .gt_font_bold {
+  font-weight: bold;
+}
+
+#idauwhwfje .gt_font_italic {
+  font-style: italic;
+}
+
+#idauwhwfje .gt_super {
+  font-size: 65%;
+}
+
+#idauwhwfje .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+
+<div id="idauwhwfje" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+
+<table class="gt_table">
+
+<thead class="gt_header">
+
+<tr>
+
+<th colspan="205" class="gt_heading gt_title gt_font_normal" style>
+
+<strong>Daily hydropower inflow</strong>
+
+</th>
+
+</tr>
+
+<tr>
+
+<th colspan="205" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>
+
+First three days
+
+</th>
+
+</tr>
+
+</thead>
+
+<thead class="gt_col_headings">
+
+<tr>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_CCGT fleet CHP
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NL\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_CCGT fleet CHP
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BE\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FR\_Oil fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet CHP
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Coal fleet IGCC
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DE\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+DK\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Coal fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+ES\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PT\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+AT\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Coal fleet IGCC
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IT\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GB\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Oil fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+IE\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NO\_Hydro-reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NO\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+NO\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SE\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+FI\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Coal fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+PL\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CH\_Hydro-reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CH\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LT\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+LV\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+EE\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+CZ\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_OCGT fleet Modern
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HU\_Oil fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_CCGT fleet G\_H class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RO\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SK\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+SI\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Nuclear energy
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+BG\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_CCGT fleet E class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Coal fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+HR\_Oil fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS\_Hydro-reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS\_CCGT fleet cogen
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+RS\_Oil fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_Hydro reservoir
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_Biomass fleet
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_OCGT fleet Standard
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_Lignite fleet Subcritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_Lignite fleet Supercritical
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_CCGT fleet CHP
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_CCGT fleet F class
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+GR\_CCGT fleet G\_H class
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody class="gt_table_body">
+
+<tr>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1,012,019
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+2,525,081
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+645,450
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1,877,565
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1,422,859
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+18,440,832
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+9,210,462
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+763,170
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+4,066,876
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+323,852
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+119,237
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+104,881
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+14,848
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+489,718
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1,012,019
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+2,525,081
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+645,450
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1,877,565
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1,422,859
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+18,440,832
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+9,210,462
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+763,170
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+4,066,876
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+323,852
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+119,237
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+104,881
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+14,848
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+489,718
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1,012,019
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+2,525,081
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+645,450
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1,877,565
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+1,422,859
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+18,440,832
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+9,210,462
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+763,170
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+4,066,876
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+323,852
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+119,237
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+104,881
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+14,848
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+489,718
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+<td class="gt_row gt_right">
+
+0
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!--/html_preserve-->
+
 ## Outputs
+
+At the end of a YAPOS simulation, in the same folder of the input file
+the model will save a set of files containing the results for the
+simulation.
+
+The main output file is in NetCDF format and the filename is set with
+the keyword specified [when executing the simulation](#launch). In
+addition to the NetCDF file, the simulation saves also a set of CSV
+files in addition to a file named `model.lp`, containing the linear
+programming formulation (that can be used for example to rerun the same
+problem with another solver, e.g. GLPK).
+
+### NetCDF output
+
+``` python
+import xarray as xr
+xr.open_dataset('/Users/matteodefelice/work/yaposer/inst/extdata/es-pt-fr.nc')
+```
+
+    ## <xarray.Dataset>
+    ## Dimensions:            (day: 365, line: 2, unit: 26, zone: 3)
+    ## Coordinates:
+    ##   * day                (day) int64 0 1 2 3 4 5 6 ... 358 359 360 361 362 363 364
+    ##   * unit               (unit) object 'FR_Hydro reservoir' ... 'PT_Coal fleet Supercritical'
+    ##   * zone               (zone) object 'ES' 'PT' 'FR'
+    ##   * line               (line) object 'ES-FR' 'ES-PT'
+    ## Data variables:
+    ##     production         (day, unit) float64 ...
+    ##     availability       (day, unit) float64 ...
+    ##     inflow             (day, unit) float64 ...
+    ##     storage_min        (day, unit) float64 ...
+    ##     demand             (day, zone) int64 ...
+    ##     renewables         (day, zone) float64 ...
+    ##     flow               (day, line) float64 ...
+    ##     shed_load          (day, zone) float64 ...
+    ##     curtailed          (day, zone) float64 ...
+    ##     storage_level      (day, unit) float64 ...
+    ##     water_slack        (day, unit) float64 ...
+    ##     storage_slack      (day, unit) float64 ...
+    ##     curtailment_slack  (day, zone) float64 ...
+    ##     unit_bus           (unit) int64 ...
+    ##     unit_Technology    (unit) object ...
+    ##     unit_Fuel          (unit) object ...
+    ##     unit_cost          (unit) float64 ...
+    ##     unit_co2_per_mwh   (unit) float64 ...
+    ##     unit_max           (unit) float64 ...
+    ##     unit_stomax        (unit) int64 ...
+    ##     unit_min           (unit) float64 ...
+    ##     unit_stomin        (unit) int64 ...
+    ##     line_from          (line) int64 ...
+    ##     line_to            (line) int64 ...
+    ##     line_cap           (line) int64 ...
+    ## Attributes:
+    ##     created:          20/05/2020 21:44:19
+    ##     hostname:         New-MacBook-Pro-2.local
+    ##     model_folder:     db/test/
+    ##     simulation_name:  test_run
 
 ## Available simulations
