@@ -1,0 +1,8 @@
+name: yapos
+dependencies:
+  - coincbc
+  - numpy
+  - pandas
+  - pyomo
+  - xarray
+  - netcdf4
