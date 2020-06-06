@@ -10,6 +10,17 @@
       - [Outputs](#outputs)
       - [Available simulations](#simulations)
 
+    ## ── Attaching packages ───────────────────────────── tidyverse 1.3.0 ──
+
+    ## ✓ ggplot2 3.3.1     ✓ purrr   0.3.4
+    ## ✓ tibble  3.0.1     ✓ dplyr   1.0.0
+    ## ✓ tidyr   1.1.0     ✓ stringr 1.4.0
+    ## ✓ readr   1.3.1     ✓ forcats 0.5.0
+
+    ## ── Conflicts ──────────────────────────────── tidyverse_conflicts() ──
+    ## x dplyr::filter() masks stats::filter()
+    ## x dplyr::lag()    masks stats::lag()
+
 # Yet Another Power System Model (YAPOS)
 
 **What is YAPOS?** YAPOS is an economic dispatch model implemented in
@@ -82,6 +93,7 @@ the NetCDF output.
   - Transmission lines: `lin.csv`
   - Demand time-series: `dem.csv`
   - Renewable time-series: `ren.csv`
+  - Renewables (non-dispatchable) generation capacity: `ren_pp.csv`
   - Inflow time-series: `inflow.csv`
   - Availability time-series: `avail.csv`
   - Minimum storage levels: `stomin.csv`
@@ -233,6 +245,31 @@ specified will be generated unless curtailed.
 | 20,557.8965 | 13,255.3820 | 121,752.65 | 156,950.97 | 18,819.484 | 173,161.98 | 35,485.29 | 38,935.60 | 80,576.96 | 92,316.59 |  6,672.33 | 4,867.778 | 3,931.454 | 20,510.49 | 2,121.124 | 15,844.14 | 235.01548 | 22.51376 | 419.9438 | 281.94999 |  87.65472 | 17,841.52 | 0.71658 | 6,803.398 | 8,005.176 | 9,512.651 | 15,433.87 | 17,284.09 |
 
 Daily renewable generation
+
+### Renewables/ Non-dispatchable generation capacity
+
+The file has the name `ren_pp.csv` and contains a table with a row per
+each non-dispatchable fuel/technology (variable generation units like
+wind and solar). Each row has the following fields:
+
+  - `Technology`: code of technology based on the [Dispa-SET
+    classification](http://www.dispaset.eu/en/latest/data.html?#technologies)
+  - The capacity in MW for each zone
+
+**NOTE** This file is not actually used for the simulation but it might
+be useful to the modeller to understand the energy mix “contained” into
+the [non-dispatchable electricity time-series](#ren)
+
+Here an example of the file `db/envarclim/1990/ren_pp.csv`.
+
+| Technology |   NL |   BE |      FR |       DE |   DK |       ES |      PT |      AT |       IT |   GB |      IE |     NO |   SE |   FI |      PL |      CH |  LT |   LV |  EE |      CZ |  HU |      RO |      SK |   SI |      BG |     HR |      RS |   GR |
+| :--------- | ---: | ---: | ------: | -------: | ---: | -------: | ------: | ------: | -------: | ---: | ------: | -----: | ---: | ---: | ------: | ------: | --: | ---: | --: | ------: | --: | ------: | ------: | ---: | ------: | -----: | ------: | ---: |
+| HROR       |   NA |  115 |  8843.9 |  3854.28 |   10 |  2740.59 | 2872.96 | 5521.47 | 10604.89 | 1835 |  237.00 | 1449.4 |   NA | 3250 |  418.92 | 4022.77 | 127 | 1565 |   6 |  334.92 |  28 | 2632.44 | 1271.81 | 1113 |  630.11 | 457.17 | 2008.46 |  223 |
+| PHOT       | 1429 | 3087 |  6196.0 | 40021.00 |  851 |  6500.00 |  429.00 |  732.00 | 18920.00 | 9063 |      NA |     NA |   NA |   NA |  108.00 |      NA |  69 |   NA |   1 | 2027.00 |  29 | 1225.00 |  530.00 |  263 | 1041.00 |  49.00 |      NA | 2441 |
+| WTOF       |  357 |  712 |      NA |  3283.00 | 1271 |       NA |      NA |      NA |       NA | 5011 |   33.01 |     NA |   NA |   NA |      NA |      NA |  NA |   NA |  NA |      NA |  NA |      NA |      NA |   NA |      NA |     NA |      NA |   NA |
+| WTON       | 3284 | 1580 | 10324.0 | 41033.00 | 3808 | 22772.00 | 5046.00 | 2489.00 |  9416.00 | 9204 | 2740.00 |  873.0 | 5960 | 1082 | 5494.00 |  120.00 | 509 |   74 | 375 |  277.00 | 328 | 2938.00 |    3.00 |    3 |  701.00 | 489.00 |      NA | 1875 |
+
+Non-dispatchable generation capacity
 
 ### Inflow
 

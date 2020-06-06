@@ -21,6 +21,8 @@ class problem:
         self.dem = pd.read_csv(folder+'/dem.csv')
         # Non-dispatchable renewables time-series
         self.ren = pd.read_csv(folder+'/ren.csv')
+        # Non-dispatchable renewables capacity
+        self.ren_pp = pd.read_csv(folder+'/ren_pp.csv')
         # Inflow time-series
         self.inflow = pd.read_csv(folder + '/inflow.csv')
         # Units' availability time-series
@@ -267,7 +269,14 @@ class problem:
                     attrs = {'unit': 'MWh', 'description': 'Non-dispatchable renewables per zone'},
                     name = 'renewables')
             )
-            
+            all_ds.append(
+                xr.DataArray(self.ren_pp.drop(columns = ['Technology']),
+                    coords={'ren_technology': self.ren_pp['Technology'], 'zone': self.ren_pp.drop(columns = ['Technology']).columns},
+                    dims=['ren_technology', 'zone'], 
+                    attrs = {'unit': 'MW', 'description': 'Non-dispatchable capacity per zone'},
+                    name = 'renewables_pp')
+            )
+            breakpoint()
             all_ds.append(
                 xr.DataArray(self.flow.values, 
                     coords={'day': np.arange(365), 'line': self.lin['line_name'].values},
