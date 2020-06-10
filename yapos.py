@@ -276,7 +276,6 @@ class problem:
                     attrs = {'unit': 'MW', 'description': 'Non-dispatchable capacity per zone'},
                     name = 'renewables_pp')
             )
-            breakpoint()
             all_ds.append(
                 xr.DataArray(self.flow.values, 
                     coords={'day': np.arange(365), 'line': self.lin['line_name'].values},
