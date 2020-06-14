@@ -9,6 +9,7 @@
       - [Inputs](#inputs)
       - [Outputs](#outputs)
       - [Available simulations](#simulations)
+
 # Yet Another Power System Model (YAPOS)
 
 **What is YAPOS?** YAPOS is an economic dispatch model implemented in
@@ -306,11 +307,11 @@ Daily minimum storage
 
 ## Outputs
 
-At the end of a YAPOS simulation, in the same folder of the input file
+At the end of a YAPOS simulation, in the same folder of the input files
 the model will save a set of files containing the results for the
 simulation.
 
-The main output file is in NetCDF format and the filename is set with
+The main output file is in NetCDF format and its filename is set with
 the keyword specified [when executing the simulation](#launch). In
 addition to the NetCDF file, the simulation saves also a set of CSV
 files in addition to a file named `model.lp`, containing the linear
@@ -362,5 +363,27 @@ xr.open_dataset('/Users/matteodefelice/work/yaposer/inst/extdata/es-pt-fr.nc')
     ##     hostname:         New-MacBook-Pro-2.local
     ##     model_folder:     db/test/
     ##     simulation_name:  test_run
+
+### CSV/TXT output
+
+YAPOS model writes the following files at end the of the simulation:
+
+  - `prod.csv`: daily generation for each generation unit
+  - `flow.csv`: electricity flow for each transmission line, positive
+    signs indicate a flow from the first zone to the second one
+    specified in the line name (e.g. `CH-IT`)
+  - `shed.csv`: shed load for each zone
+  - `curt.csv`: curtailed electricity for each simulated zone
+  - `ws.csv`: value of the water slack variable for each generation
+    unit. This is the slack variable for the storage balance constraint
+  - `ss.sv`: value of the storage slack variable for each generation
+    unit. This is the slack variable for the minimum storage constraint
+  - `cs.sv`: value of the curtailment slack variable for each zone. This
+    is the slack variable for the maximum curtailment constraint
+  - `sl.csv`: calculated storage level for all the generation units
+    (included the units without any storage)
+  - `dual*.txt`: a set of text files with the dual values for all the
+    constraints. The data is written to file directly from the
+    `model.dual` Pyomo objects.
 
 ## Available simulations
